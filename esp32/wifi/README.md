@@ -1,0 +1,1 @@
+Program that uses ESP32 to store data from DHT11 humidity and temperature sensor and then to upload data to Thingspeak server.
