@@ -1,0 +1,1 @@
+ESP32 program for storing data from DHT sensor to microcontroller's EEPROM.
