@@ -1,0 +1,1 @@
+This script pulls the data from sensors, then processes it and then uploads it to Thingspeak server. It features a server than replies to requests from client application (in this case it was Android app - the code for this app has been lost (unfortunately).S
