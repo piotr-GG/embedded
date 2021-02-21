@@ -1,0 +1,1 @@
+ESP32 program + program made with MIT App Inventor that reads the DHT11 data sent from ESP32.
