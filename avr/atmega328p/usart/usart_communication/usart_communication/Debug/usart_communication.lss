@@ -1,0 +1,237 @@
+
+usart_communication.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000001ae  2**0
+                  ALLOC, LOAD, DATA
+  1 .text         00000080  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      0000002f  00000000  00000000  000001ae  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000078  00000000  00000000  000001dd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000da5  00000000  00000000  00000255  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000078d  00000000  00000000  00000ffa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000484  00000000  00000000  00001787  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000158  00000000  00000000  00001c0c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000211  00000000  00000000  00001d64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000539  00000000  00000000  00001f75  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000068  00000000  00000000  000024ae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .text         00000004  00000136  00000136  000001aa  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 12 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002518  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .text.initUSART 00000022  000000f8  000000f8  0000016c  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 14 .text.transmitByte 0000000e  0000011a  0000011a  0000018e  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 15 .text.receiveByte 0000000e  00000128  00000128  0000019c  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 16 .text.printString 00000036  00000090  00000090  00000104  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 17 .progmemx.data 0000000f  00000080  00000080  000000f4  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, PROGMEMX
+ 18 .text.main    00000032  000000c6  000000c6  0000013a  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+   8:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+   c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  10:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  14:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  18:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  1c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  20:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  24:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  28:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  2c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  30:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  34:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  38:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  3c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  40:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  44:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  48:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  4c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  50:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  54:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  58:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  5c:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  60:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+  64:	0c 94 9b 00 	jmp	0x136	; 0x136 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+  74:	0e 94 63 00 	call	0xc6	; 0xc6 <main>
+  78:	0c 94 3e 00 	jmp	0x7c	; 0x7c <_exit>
+
+0000007c <_exit>:
+  7c:	f8 94       	cli
+
+0000007e <__stop_program>:
+  7e:	ff cf       	rjmp	.-2      	; 0x7e <__stop_program>
+
+Disassembly of section .text:
+
+00000136 <__bad_interrupt>:
+ 136:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+Disassembly of section .text.initUSART:
+
+000000f8 <initUSART>:
+#include <avr/io.h>
+#include "USART.h"
+#include <util/setbaud.h>
+
+void initUSART(void) {                                /* requires BAUD */
+  UBRR0H = UBRRH_VALUE;                        /* defined in setbaud.h */
+  f8:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+  UBRR0L = UBRRL_VALUE;
+  fc:	87 e6       	ldi	r24, 0x67	; 103
+  fe:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+#if USE_2X
+  UCSR0A |= (1 << U2X0);
+#else
+  UCSR0A &= ~(1 << U2X0);
+ 102:	e0 ec       	ldi	r30, 0xC0	; 192
+ 104:	f0 e0       	ldi	r31, 0x00	; 0
+ 106:	80 81       	ld	r24, Z
+ 108:	8d 7f       	andi	r24, 0xFD	; 253
+ 10a:	80 83       	st	Z, r24
+#endif
+                                  /* Enable USART transmitter/receiver */
+  UCSR0B = (1 << TXEN0) | (1 << RXEN0);
+ 10c:	88 e1       	ldi	r24, 0x18	; 24
+ 10e:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);   /* 8 data bits, 1 stop bit */
+ 112:	86 e0       	ldi	r24, 0x06	; 6
+ 114:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+ 118:	08 95       	ret
+
+Disassembly of section .text.transmitByte:
+
+0000011a <transmitByte>:
+}
+
+
+void transmitByte(uint8_t data) {
+                                     /* Wait for empty transmit buffer */
+  loop_until_bit_is_set(UCSR0A, UDRE0);
+ 11a:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 11e:	95 ff       	sbrs	r25, 5
+ 120:	fc cf       	rjmp	.-8      	; 0x11a <transmitByte>
+  UDR0 = data;                                            /* send data */
+ 122:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+ 126:	08 95       	ret
+
+Disassembly of section .text.receiveByte:
+
+00000128 <receiveByte>:
+}
+
+uint8_t receiveByte(void) {
+  loop_until_bit_is_set(UCSR0A, RXC0);       /* Wait for incoming data */
+ 128:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+ 12c:	88 23       	and	r24, r24
+ 12e:	e4 f7       	brge	.-8      	; 0x128 <receiveByte>
+  return UDR0;                                /* return register value */
+ 130:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+}
+ 134:	08 95       	ret
+
+Disassembly of section .text.printString:
+
+00000090 <printString>:
+    ones = thisChar;
+    thisChar = receiveByte();                   /* get a new character */
+    transmitByte(thisChar);                                    /* echo */
+  } while (thisChar != '\r');                     /* until type return */
+  return (100 * (hundreds - '0') + 10 * (tens - '0') + ones - '0');
+}
+  90:	cf 92       	push	r12
+  92:	df 92       	push	r13
+  94:	ef 92       	push	r14
+  96:	cf 93       	push	r28
+  98:	6b 01       	movw	r12, r22
+  9a:	e8 2e       	mov	r14, r24
+  9c:	c0 e0       	ldi	r28, 0x00	; 0
+  9e:	03 c0       	rjmp	.+6      	; 0xa6 <printString+0x16>
+  a0:	0e 94 8d 00 	call	0x11a	; 0x11a <transmitByte>
+  a4:	cf 5f       	subi	r28, 0xFF	; 255
+  a6:	ae 2d       	mov	r26, r14
+  a8:	c6 01       	movw	r24, r12
+  aa:	8c 0f       	add	r24, r28
+  ac:	91 1d       	adc	r25, r1
+  ae:	a1 1d       	adc	r26, r1
+  b0:	fc 01       	movw	r30, r24
+  b2:	84 91       	lpm	r24, Z
+  b4:	a7 fd       	sbrc	r26, 7
+  b6:	80 81       	ld	r24, Z
+  b8:	81 11       	cpse	r24, r1
+  ba:	f2 cf       	rjmp	.-28     	; 0xa0 <printString+0x10>
+  bc:	cf 91       	pop	r28
+  be:	ef 90       	pop	r14
+  c0:	df 90       	pop	r13
+  c2:	cf 90       	pop	r12
+  c4:	08 95       	ret
+
+Disassembly of section .text.main:
+
+000000c6 <main>:
+#include <util/delay.h>
+#include "USART.c"
+
+int main(void)
+{
+	DDRB = 0xFF;
+  c6:	8f ef       	ldi	r24, 0xFF	; 255
+  c8:	84 b9       	out	0x04, r24	; 4
+	initUSART();
+  ca:	0e 94 7c 00 	call	0xf8	; 0xf8 <initUSART>
+	printString("Hello World!\r\n");
+  ce:	60 e8       	ldi	r22, 0x80	; 128
+  d0:	70 e0       	ldi	r23, 0x00	; 0
+  d2:	80 e0       	ldi	r24, 0x00	; 0
+  d4:	0e 94 48 00 	call	0x90	; 0x90 <printString>
+    while(1)
+    {
+		uint8_t serialCharacter = receiveByte();
+  d8:	0e 94 94 00 	call	0x128	; 0x128 <receiveByte>
+  dc:	c8 2f       	mov	r28, r24
+		transmitByte(serialCharacter);
+  de:	0e 94 8d 00 	call	0x11a	; 0x11a <transmitByte>
+		PORTB = serialCharacter;
+  e2:	c5 b9       	out	0x05, r28	; 5
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e4:	2f ef       	ldi	r18, 0xFF	; 255
+  e6:	89 e6       	ldi	r24, 0x69	; 105
+  e8:	98 e1       	ldi	r25, 0x18	; 24
+  ea:	21 50       	subi	r18, 0x01	; 1
+  ec:	80 40       	sbci	r24, 0x00	; 0
+  ee:	90 40       	sbci	r25, 0x00	; 0
+  f0:	e1 f7       	brne	.-8      	; 0xea <main+0x24>
+  f2:	00 c0       	rjmp	.+0      	; 0xf4 <main+0x2e>
+  f4:	00 00       	nop
+  f6:	f0 cf       	rjmp	.-32     	; 0xd8 <main+0x12>
